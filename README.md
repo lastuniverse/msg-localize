@@ -66,17 +66,18 @@ Create a folder where your localization files will be stored. For example the fo
 
 #### Everything is now ready to use. Let's get started:
 
-
+connect the localization module
 ```javascript
-// connect the localization module
 const Messages = require('msg-localize');
 
 // load localization files for the start script (commands /start and /help)
 // and set the default localization. This will download the localization 
 // files all present in the folder `./languages/start`
 const messages = new Messages("./languages/start","en_US");
+```
 
-// we will receive a welcome message
+we will receive a welcome message
+```javascript
 const text = messages.getMessage("welcome.*", {name: "Alexander"});
 console.log(text);
     // for example, I print messages to the console.
@@ -84,29 +85,30 @@ console.log(text);
     //    "Alexander, greetings"
     //    "Alexander hello"
     //    "Alexander, nice to see you"
+```
 
-...
-
-// then I want to acquaint the user with a brief description of the bot's capabilities
+then I want to acquaint the user with a brief description of the bot's capabilities
+```javascript
 const text = messages.getMessage("info.simple");
 console.log(text);
     // will output the following:
     //    "Here you can check the current weather. For a detailed description of the features, enter the command /help"
 
-// if the user's language differs from the default language, 
-// then we can specify it explicitly, taking the user's 
-// language from his data. You can do it like this:
-// `messages.getMessage("info.help", "ru_RU");`
-// or so:
-// `messages.getMessage("welcome.*", {name: "Alexander"}, "ru_RU");`
+```
+
+if the user's language differs from the default language, then we can specify it explicitly, taking the user's language from his data. You can do it like this:
+`messages.getMessage("info.help", "ru_RU");`
+or so:
+`messages.getMessage("welcome.*", {name: "Alexander"}, "ru_RU");`
+```javascript
 const text = messages.getMessage("info.simple", "ru_RU"); 
 console.log(text);
     // will output the following:
     //    "Здесь вы можете узнать текущую погоду. Для подробного описания возможностей введите команду /help"
+```
 
-
-// when the user enters the command /help, you need to send
-// him a full description of the bot's capabilities
+when the user enters the command /help, you need to send him a full description of the bot's capabilities.
+```javascript
 const text = messages.getMessage("info.help");
 console.log(text);
     // will output the following text (broken line by line):
@@ -144,16 +146,17 @@ The capabilities of this module are somewhat wider than shown above, then you ca
 ```
 
 #### examples of many additional features provided by the module
+
+passing substitution parameters
 ```javascript
-// passing substitution parameters
 const text = messages.getMessage("like.pets",{pet1:"a kitten", pet2:"a puppy"});
 console.log(text);
     // will output the following text:
     //   "I really love animals, I have a kitten and a puppy at home"
 ```
 
+passing parameters and their random substitution
 ```javascript
-// passing parameters and their random substitution
 const text = messages.getMessage("like.randomPets",{pets: [ "a kitten", "a puppy", "a duck", "a parrot", "a canary", "a guinea pig", "a hamster", "a raccoon", "a skunk"]});
 console.log(text);
     // will output the following text (the choice of pets is random):
@@ -165,16 +168,16 @@ console.log(text);
     // etc
 ```
 
+recursive parameter substitution
 ```javascript
-// recursive parameter substitution
 const text = messages.getMessage("like.met",{options:"but ${like.but}"});
 console.log(text);
     // will output the following text:
     //   "I like you but you are too poor for me"
 ```
 
+recursive substitution of random parameters
 ```javascript
-// recursive substitution of random parameters
 const text = messages.getMessage("like.met",{options:"but ${like.but`s.*}"});
 console.log(text);
     // will output the following text (the choice of "but" is random)::
@@ -185,16 +188,16 @@ console.log(text);
     //   "I like you but i am a married woman"
 ```
 
+multiple parameter substitution
 ```javascript
-// multiple parameter substitution
 const text = messages.getMessage("about",{name:"Nelson", sname:"Horatio", profession:"naval admiral"});
 console.log(text);
     // will output the following text:
     //   "My name is Horatio Nelson, I am a naval admiral."
 ```
 
+also this module automatically tracks closed recursion (when the message replaces itself)
 ```javascript
-// also this module automatically tracks closed recursion (when the message replaces itself)
 const text = messages.getMessage("reqursion",{insert:"${reqursion}"});
 console.log(text);
     // will output the following text:
