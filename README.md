@@ -19,7 +19,7 @@ npm install msg-localize --save
 Create a folder where your localization files will be stored. For example the folder `./languages`. Within this folder, create subfolders to localize various scripts for your application. For example, to localize a simple telegram bot, I created the folders `./languages/start` and`./languages​/weather` for the scripts of the commands `/start` and`/weather`, respectively. Localization files in the format `*.json` or [*.hjson](https://www.npmjs.com/package/hjson) must be placed in these folders. In each of them for English and Russian, I put files `./languages​/start/en_US.json`,`./languages​​/start/ru_RU.json`, `./languages​/weather/en_US.json` and`./languages/weather/ru_RU.json`. For example, I will give 2 of them:
 
 **./languages/start/en_US.json**
-```JSON
+```javascript
 {
     "welcome": [
         "${name}, greetings",
@@ -41,7 +41,7 @@ Create a folder where your localization files will be stored. For example the fo
 ```
 
 **./languages/start/ru_RU.json**
-```JSON
+```javascript
 {
     "welcome": [
         "${name}, приветствую вас",
@@ -124,7 +124,7 @@ The capabilities of this module are somewhat wider than shown above, then you ca
 
 
 #### for example, let's take such a localization file
-```JSON
+```javascript
 {
     "like": {
         "pets": "I really love animals, I have ${pet1} and ${pet2} at home",
