@@ -141,7 +141,7 @@ The capabilities of this module are somewhat wider than shown above, then you ca
     "reqursion": "${insert}"
 
 }
-
+```
 
 #### examples of many additional features provided by the module
 ```javascript
