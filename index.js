@@ -142,8 +142,3 @@ class Messages {
     }
 }
 module.exports = Messages;
-
-
-const messages = new Messages("./data/messages/events");
-
-messages.getMessage("welcome.other.*", {name: "Петя"});

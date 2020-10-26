@@ -56,6 +56,7 @@ for_me
 
 # Data directories
 data
+test
 
 # Optional npm cache directory
 .npm
