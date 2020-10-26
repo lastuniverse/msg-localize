@@ -150,8 +150,9 @@ const text = messages.getMessage("like.pets",{pet1:"a kitten", pet2:"a puppy"});
 console.log(text);
     // will output the following text:
     //   "I really love animals, I have a kitten and a puppy at home"
+```
 
-
+```javascript
 // passing parameters and their random substitution
 const text = messages.getMessage("like.randomPets",{pets: [ "a kitten", "a puppy", "a duck", "a parrot", "a canary", "a guinea pig", "a hamster", "a raccoon", "a skunk"]});
 console.log(text);
@@ -162,15 +163,17 @@ console.log(text);
     // or
     //   "I really love animals, I have a skunk and a kitten at home"
     // etc
+```
 
-
+```javascript
 // recursive parameter substitution
 const text = messages.getMessage("like.met",{options:"but ${like.but}"});
 console.log(text);
     // will output the following text:
     //   "I like you but you are too poor for me"
+```
 
-
+```javascript
 // recursive substitution of random parameters
 const text = messages.getMessage("like.met",{options:"but ${like.but`s.*}"});
 console.log(text);
@@ -180,15 +183,17 @@ console.log(text);
     //   "I like you but i prefer to have sex with girls"
     // or
     //   "I like you but i am a married woman"
+```
 
-
+```javascript
 // multiple parameter substitution
 const text = messages.getMessage("about",{name:"Nelson", sname:"Horatio", profession:"naval admiral"});
 console.log(text);
     // will output the following text:
     //   "My name is Horatio Nelson, I am a naval admiral."
+```
 
-
+```javascript
 // also this module automatically tracks closed recursion (when the message replaces itself)
 const text = messages.getMessage("reqursion",{insert:"${reqursion}"});
 console.log(text);
