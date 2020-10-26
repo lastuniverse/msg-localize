@@ -24,10 +24,10 @@ Create a folder where your localization files will be stored. For example the fo
     "welcome": [
         "${name}, greetings",
         "${name} hello",
-        "${name}, nice to see you",
+        "${name}, nice to see you"
     ],
     "info": {
-        "simple": "Here you can check the current weather. For a detailed description of the features, enter the command / help",
+        "simple": "Here you can check the current weather. For a detailed description of the features, enter the command /help",
         "help": [
             "To find out the weather, use the /weather {city} command\n",
             "where {city} is the name of the settlement you are interested in\n",
@@ -46,7 +46,7 @@ Create a folder where your localization files will be stored. For example the fo
     "welcome": [
         "${name}, приветствую вас",
         "${name}, здравствуйте",
-        "${name}, рад вас видеть",
+        "${name}, рад вас видеть"
     ],
     "info":{
         "simple": "Здесь вы можете узнать текущую погоду. Для подробного описания возможностей введите команду /help",
@@ -74,7 +74,7 @@ const Messages = require('msg-localize');
 // load localization files for the start script (commands /start and /help)
 // and set the default localization. This will download the localization 
 // files all present in the folder `./languages/start`
-const startMessages = new Messages("./languages/start","en_US");
+const messages = new Messages("./languages/start","en_US");
 
 // we will receive a welcome message
 const text = messages.getMessage("welcome.*", {name: "Alexander"});
@@ -99,7 +99,7 @@ console.log(text);
 // `messages.getMessage("info.help", "ru_RU");`
 // or so:
 // `messages.getMessage("welcome.*", {name: "Alexander"}, "ru_RU");`
-const text = messages.getMessage("info.help", "ru_RU"); 
+const text = messages.getMessage("info.simple", "ru_RU"); 
 console.log(text);
     // will output the following:
     //    "Здесь вы можете узнать текущую погоду. Для подробного описания возможностей введите команду /help"
@@ -153,7 +153,7 @@ console.log(text);
 
 
 // passing parameters and their random substitution
-const text = messages.getMessage("like.randomPets",{pets: [ "a kitten", "a puppy", "a duck", "a parrot", "a canary", "a guinea pig", "a hamster", "a raccoon" "a skunk"]});
+const text = messages.getMessage("like.randomPets",{pets: [ "a kitten", "a puppy", "a duck", "a parrot", "a canary", "a guinea pig", "a hamster", "a raccoon", "a skunk"]});
 console.log(text);
     // will output the following text (the choice of pets is random):
     //   "I really love animals, I have a kitten and a puppy at home"
@@ -165,14 +165,14 @@ console.log(text);
 
 
 // recursive parameter substitution
-const text = messages.getMessage("like.pets",{options:"but ${like.but}"});
+const text = messages.getMessage("like.met",{options:"but ${like.but}"});
 console.log(text);
     // will output the following text:
     //   "I like you but you are too poor for me"
 
 
 // recursive substitution of random parameters
-const text = messages.getMessage("like.pets",{options:"but ${like.but`s.*}"});
+const text = messages.getMessage("like.met",{options:"but ${like.but`s.*}"});
 console.log(text);
     // will output the following text (the choice of "but" is random)::
     //   "I like you but you are too poor for me"

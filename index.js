@@ -14,16 +14,16 @@ const jsonFiles = {};
  *                    hjson data
  */
 function loadHJsonFiles(dataPath) {
-    if (!fs.existsSync(dataPath))
-        throw new Error(`Каталога ${dataPath} не существует`);
+    const localesPath = path.join(__dirname, dataPath);
+    if (!fs.existsSync(localesPath))
+        throw new Error(`Каталога ${localesPath} не существует`);
 
     const list = {};
-
-    fs.readdirSync(dataPath).forEach(fileName => {
+    fs.readdirSync(localesPath).forEach(fileName => {
         if (!fileName.match(/\.h?json$/))
             return;
 
-        const filePath = path.join(__dirname, dataPath, fileName);
+        const filePath = path.join(localesPath, fileName);
         const key = fileName.replace(/\.[^\.]*$/, '');
 
         if (jsonFiles[filePath]) {
@@ -112,7 +112,6 @@ class Messages {
         }
         
         const text = this.__parseRawText(deepkey, data);
-        console.log(text);
         this.recursionFind={};
         return text;
     }
