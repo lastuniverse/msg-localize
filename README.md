@@ -198,8 +198,6 @@ console.log(text);
 
 ... documentation in processed
 
-## Tests
-[Tests](http://jsfiddle.net/zb0vwqsd/)
 
 ## Participation in development
 ```
