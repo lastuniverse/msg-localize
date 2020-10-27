@@ -1,6 +1,6 @@
 {
   "name": "msg-localize",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Module for localizing messages. Can be used in bots, probably for websites.",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,8 @@
     "nodejs",
     "json"
   ],
-  "author": "Roman Surmanidze aka lastuniverse",
-  "license": "ISC",
+  "author": "Roman Surmanidze aka lastuniverse lastuniverse@github.com",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lastuniverse/msg-localize/issues"
   },
