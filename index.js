@@ -56,6 +56,9 @@ function getKey(key, obj) {
     const current = key.shift();
 
     let item = obj[current];
+    if (!item)
+        return null;
+
     if (current === "*") {
         if (Array.isArray(obj))
             obj = Object.values(obj);
@@ -119,6 +122,7 @@ class Messages {
     __getRawMessage(key, locale = this.locale) {
         let source = this.messages[locale] || this.messages[this.locale] || this.messages[Object.keys(this.messages)[0]] || {};
         let rawText = getKey(key, source);
+        if (!rawText) return null;
         if (Array.isArray(rawText))
             return rawText
                 .filter(value => (['string', 'number'].includes(typeof value)))
@@ -130,6 +134,7 @@ class Messages {
     __parseRawText(key, data = {}, locale = this.locale) {
         this.recursionFind[key] = true;
         const rawText = this.__getRawMessage(key, locale);
+        if (!rawText) return null;
         return rawText.replace(/\$\{\s*([^\{\}\s]*?)\s*\}/g, (tmp, key) => {
             const value = getKey(key, data);
             return value.replace(/\$\{\s*([^\{\}\s]*?)\s*\}/g, (tmp, subkey) => {
