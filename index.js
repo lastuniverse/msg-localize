@@ -56,8 +56,6 @@ function getKey(key, obj) {
     const current = key.shift();
 
     let item = obj[current];
-    if (!item)
-        return null;
 
     if (current === "*") {
         if (Array.isArray(obj))
@@ -68,6 +66,9 @@ function getKey(key, obj) {
 
     if (key.length)
         return getKey(key, item);
+
+    if (!item)
+        return null;
 
     return item;
 }
