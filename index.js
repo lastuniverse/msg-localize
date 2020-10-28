@@ -56,11 +56,11 @@ function getKey(key, obj) {
     const current = key.shift();
 
     let item = obj[current];
-    if(current==="*"){
-        if(Array.isArray(obj))
-            obj=Object.values(obj);
+    if (current === "*") {
+        if (Array.isArray(obj))
+            obj = Object.values(obj);
 
-        item = obj[Math.floor(Math.random()*obj.length)];
+        item = obj[Math.floor(Math.random() * obj.length)];
     }
 
     if (key.length)
@@ -105,19 +105,19 @@ class Messages {
      * @param {String} locale  language tag like "en_US"
      * @return {String} - message corresponding to the deep key for the requested localization
      */
-    getMessage(deepkey, data={}, locale = this.locale) {
-        if(typeof data === "string"){
+    getMessage(deepkey, data = {}, locale = this.locale) {
+        if (typeof data === "string") {
             locale = data;
             data = {};
         }
-        
-        const text = this.__parseRawText(deepkey, data);
-        this.recursionFind={};
+
+        const text = this.__parseRawText(deepkey, data, locale);
+        this.recursionFind = {};
         return text;
     }
 
     __getRawMessage(key, locale = this.locale) {
-        let source = this.messages[locale]||this.messages[this.locale]||this.messages[Object.keys(this.messages)[0]]||{};
+        let source = this.messages[locale] || this.messages[this.locale] || this.messages[Object.keys(this.messages)[0]] || {};
         let rawText = getKey(key, source);
         if (Array.isArray(rawText))
             return rawText
@@ -127,14 +127,14 @@ class Messages {
         return rawText;
     }
 
-    __parseRawText(key, data={}, locale = this.locale){
-        this.recursionFind[key]=true;
-        const rawText = this.__getRawMessage(key, locale);        
-        return rawText.replace(/\$\{\s*([^\{\}\s]*?)\s*\}/g, (tmp,key) =>{
+    __parseRawText(key, data = {}, locale = this.locale) {
+        this.recursionFind[key] = true;
+        const rawText = this.__getRawMessage(key, locale);
+        return rawText.replace(/\$\{\s*([^\{\}\s]*?)\s*\}/g, (tmp, key) => {
             const value = getKey(key, data);
-            return value.replace(/\$\{\s*([^\{\}\s]*?)\s*\}/g, (tmp,subkey) =>{
-                if(this.recursionFind[subkey]) return `    !!!! FIND RECURSION FOR DEEPKEY: ${subkey}!!!!    `;
-                this.recursionFind[subkey]=true;
+            return value.replace(/\$\{\s*([^\{\}\s]*?)\s*\}/g, (tmp, subkey) => {
+                if (this.recursionFind[subkey]) return `    !!!! FIND RECURSION FOR DEEPKEY: ${subkey}!!!!    `;
+                this.recursionFind[subkey] = true;
                 return this.__parseRawText(subkey, data, locale);
             });
         });
